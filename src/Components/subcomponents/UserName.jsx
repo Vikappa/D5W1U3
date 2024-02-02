@@ -12,6 +12,7 @@ function UserName(props) {
     e.preventDefault()
     props.setShowModal(true)
   }
+console.log(props)
 
   return (
     <div className="mt-2 d-flex justify-content-center align-items-center custom-split-button">
@@ -26,8 +27,8 @@ function UserName(props) {
   props.userName === "Anon"
   ? <Dropdown.Item onClick={clickSignIn} href="/login">Sign in</Dropdown.Item>
   : <>
-      <Dropdown.Item href="#">Profile</Dropdown.Item>
-      <Dropdown.Item href="#">Settings</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={props.setCurrentpage("profile")}>Profile</Dropdown.Item>
+      <Dropdown.Item href="#" onClick={props.setCurrentpage("settings")}>Settings</Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item href="/logout">Logout</Dropdown.Item>
     </>

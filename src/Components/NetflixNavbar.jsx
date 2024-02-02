@@ -5,6 +5,7 @@ import UserName from './subcomponents/UserName'
 import '../style/netflixnavbar.css'
 
 function NetflixNavbar(props) {
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" id="netflixNavbar" >
       <Container fluid>
@@ -29,7 +30,7 @@ function NetflixNavbar(props) {
             <Nav.Link className='navBarNavigators text-white' href="#action2">My List</Nav.Link>
           </Nav>
         </div>
-        <UserName userName={props.userName} setCurrentUserName={props.setCurrentUserName} showModal={props.showModal} setShowModal={props.setShowModal}/>
+        <UserName currentPage={props.currentPage} setCurrentpage={props.setCurrentpage} userName={props.userName} setCurrentUserName={props.setCurrentUserName} showModal={props.showModal} setShowModal={props.setShowModal}/>
       </Container>
     </Navbar>
   )

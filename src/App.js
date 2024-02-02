@@ -6,12 +6,13 @@ import ModalSignIn from './Components/ModalSignIn'
 function App() {
   const [currentuserName, setCurrentUserName] = useState("Anon")
   const [showModal, setShowModal] = useState(false)
+  const [currentPage, setCurrentpage] = useState("gallery")
 
 
   return (
     <>
-      <NetflixNavbar userName={currentuserName}  showModal={showModal} setShowModal={setShowModal}/>
-      <Body currentuserName={currentuserName} />
+      <NetflixNavbar userName={currentuserName}  showModal={showModal} setShowModal={setShowModal} currentPage={currentPage} setCurrentpage={setCurrentpage} />
+      <Body currentuserName={currentuserName} currentPage={currentPage} setCurrentpage={setCurrentpage} />
       <ModalSignIn showModal={showModal} setShowModal={setShowModal} setCurrentUserName={setCurrentUserName} />
     </>
   )
