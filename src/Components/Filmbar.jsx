@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FilmItem from './subcomponents/FilmItem'
 class Filmbar extends Component {
-    status = {
+    state = {
         loading: true,
         error: null,
         filmArray: [],
@@ -14,24 +14,30 @@ class Filmbar extends Component {
     }
 
     fetchFilmFromQueryParam = async (param) => {
-        fetch(`http://www.omdbapi.com/?apikey=1ab1d1e3&s=${param}&page=10`)
+      
+        fetch(`http://www.omdbapi.com/?apikey=1ab1d1e3&s=${param}&page=2&type=movie`)
         .then(response => {
           if (!response.ok) { 
-            this.status.error = true
             throw new Error('Errore di connessione')
           }
           return response.json()
         })
         .then(data => {
-            this.status.error = false
-            this.status.filmArray = data.Search
-            this.status.loading = false
-          console.log(this.status)
+            this.setState({
+                error: false,
+                loading: false,
+                filmArray: data.Search,
+              })
         })
         .catch(error => {
-          console.log('There was a problem with your fetch operation:', error)
-        });
+          console.log('Errore con la fetch:', error)
+          this.setState({
+          error: true,
+          loading: false
+        })
+        })
     }
+
     componentDidMount() {
         let param = this.riformattaInput(this.props.queryParam)
         this.fetchFilmFromQueryParam(param)
@@ -40,8 +46,8 @@ class Filmbar extends Component {
   render() {
 
     return (
-      <div>
-        {this.status.filmArray.map((film, index) => {
+      <div className='d-flex'>
+        {this.state.filmArray.map((film, index) => {
           return (
             <div key={index}>
             <FilmItem film={film}/>
