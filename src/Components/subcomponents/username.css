@@ -1,0 +1,12 @@
+#signInButton {
+    background-color: transparent !important;
+    border: 1px solid white !important; /* Colore del bordo */
+    color: white;
+  }
+
+.custom-split-button .btn-group .btn{
+    background-color: transparent !important;
+color: white;
+border: 1px solid white !important; /* Colore del bordo */
+
+}

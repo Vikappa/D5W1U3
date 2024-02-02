@@ -1,10 +1,15 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './style/style.css'
+import NetflixNavbar from './Components/NetflixNavbar'
+import Body from './Components/Body'
 function App() {
-  return (
-    <div className="App">
+  const [currentuserName, setCurrentUserName] = useState("Anon")
 
-    </div>
+  return (
+    <>
+      <NetflixNavbar userName={currentuserName} setCurrentUserName={setCurrentUserName}/>
+      <Body currentuserName={currentuserName} />
+    </>
   )
 }
 
