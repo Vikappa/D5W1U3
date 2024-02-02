@@ -1,15 +1,24 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-body{
-    overflow-x: hidden;
-}
-
-
-
 $custom-colors: (
 
 );
 
+
 $theme-colors: map-merge($theme-colors, $custom-colors);
+
 @import '~bootstrap/scss/bootstrap';
+
+body{
+    overflow-x:hidden;
+background-color:var(--bs-black);
+}
+
+#netflixLogo{
+    height: 5vh;
+}
+
+p, h1, h2, a, h3{
+    color: white;
+}

@@ -2,6 +2,7 @@
     background-color: transparent !important;
     border: 1px solid white !important; /* Colore del bordo */
     color: white;
+    
   }
 
 .custom-split-button .btn-group .btn{
@@ -9,4 +10,17 @@
 color: white;
 border: 1px solid white !important; /* Colore del bordo */
 
+}
+
+.dropdown-menu {
+  background-color: rgb(34, 34, 34)!important;
+  color: white!important;
+}
+
+.dropdown-menu a {
+  color: white!important;
+}
+
+.dropdown-menu a:hover {
+  color: rgb(0, 0, 0)!important;
 }

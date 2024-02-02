@@ -6,8 +6,12 @@ class Filmbar extends Component {
         error: null,
         filmArray: [],
         queryParam: this.props.queryParam,
-        currentUser: this.props.currentUser
+        currentUser: this.props.currentUser,
+        startX: 0,
+        scrollLeft: 0,
     }
+
+  
 
     riformattaInput(input) {
         return input.replace(/\s/g, "+")
@@ -46,14 +50,19 @@ class Filmbar extends Component {
   render() {
 
     return (
-      <div className='d-flex'>
-        {this.state.filmArray.map((film, index) => {
-          return (
-            <div key={index}>
-            <FilmItem film={film}/>
-            </div>
-          )
-        })}
+      <div className='filmBarDiv'>
+        {
+
+this.state.loading === true? <img src='https://http.cat/status/102.jpg' alt="processing"></img> :
+this.state.error === true? <img src='https://http.cat/status/400.jpg' alt="error"></img> :
+this.state.filmArray.map((film, index) => {
+  return (
+    <div key={index}>
+    <FilmItem film={film}/>
+    </div>
+  )
+})
+        }
       </div>
     );
   }

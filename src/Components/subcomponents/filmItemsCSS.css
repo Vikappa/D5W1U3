@@ -1,6 +1,45 @@
-.film-item{
+
+
+.filmBarDiv{
+    margin: 0 0 2% 0;
+    display: flex;
+    max-width: 100vw;
+    padding: 0 1vw;
+    height: 100%;
 }
 
+
+.film-item{
+    max-width: 100%;
+    flex: 0 0 19.7%;
+    text-align: center;
+    margin: 0 2px;
+    transition: transform 300ms ease 100ms;
+}
+
+.film-item:hover ~ .film-item {
+    transform: translateX(25%);
+ }
+
+
 .film-item img{
-    max-height: 30vh !important;
+    height: 30vh !important;
+    width: 80vw !important;
+    min-width: 200px !important;
+    transition: all 0.3s ;
+    z-index: 1;
+}
+
+.film-item:hover{
+    transform: scale(1.1) !important;
+z-index: 2 !important;
+overflow:auto;
+}
+
+@media screen and (min-width: 768px) {
+    
+.film-item img{
+    height: 260px !important;
+width: 400px !important;
+}
 }
