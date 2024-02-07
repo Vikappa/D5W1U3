@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form'
 
 function InserisciCommento(props) {
   const [commento, setCommento] = useState('')
-  const [rate, setRate] = useState(1) // Stato iniziale per 'rate'
+  const [rate, setRate] = useState(1)
 
   const bodyCommento = (commento) => {
-    return { comment: `${commento}`, rate: rate, elementId: `${props.elementID}` } // Usa 'rate' dallo stato
+    return { comment: `${commento}`, rate: rate, elementId: `${props.elementID}` } 
   }
 
   const handleInputChange = (e) => {
@@ -15,7 +15,7 @@ function InserisciCommento(props) {
   }
 
   const handleRateChange = (e) => {
-    setRate(e.target.value) // Aggiorna 'rate' quando l'utente sposta la barra di scorrimento
+    setRate(e.target.value) 
   }
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ function InserisciCommento(props) {
     if (commento.length > 0) {
       try {
         console.log(JSON.stringify(bodyCommento(commento)))
-        let response = await fetch('https://striveschool-api.herokuapp.com/api/comments', {
+        let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/`, {
           method: 'POST',
           body: JSON.stringify(bodyCommento(commento)),
           headers: {
@@ -36,6 +36,9 @@ function InserisciCommento(props) {
           let propsCopia = [...props.currentCommentList]
           propsCopia.push(bodyCommento(commento))
           props.setCurrentCommentList(propsCopia)
+
+          setCommento('')
+          setRate(1)
         } else {
           throw new Error('Qualcosa è andato storto')
         }

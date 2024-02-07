@@ -42,8 +42,9 @@ function MovieDetail(props) {
 
       try {
         const fetchMovieComments = async () => {
+console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`)
           let response = await fetch(
-            `https://striveschool-api.herokuapp.com/api/comments/?elementID=${extractMovieId(location.pathname)}`,
+            `https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`,
             {
               headers: {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhMmY2MDE4N2U1YzAwMTgxNGM1ZjYiLCJpYXQiOjE3MDcxODA5NjUsImV4cCI6MTcwODM5MDU2NX0.m18iQGAjFbus5eW2GN5NBb-m4kxJt6NRqXwEYXveaVU',
@@ -62,7 +63,7 @@ function MovieDetail(props) {
       } catch(error) {
       }
     }
-  }, [location.pathname, currentCommentList])
+  }, [location.pathname])
 
   return (
     <Container>
