@@ -67,7 +67,7 @@ function MovieDetail(props) {
   return (
     <Container>
       <Row>
-        <Col xs={9}>
+        <Col xs={7}>
           <h1>{currentFilm ? currentFilm.Title : "Caricamento..."}</h1>
           <img alt='Locandina film' src={currentFilm ? currentFilm.Poster :'https://http.cat/images/102.jpg' }></img>
           <h3>Anno: {currentFilm ? currentFilm.Year : "Caricamento..."}</h3>
@@ -76,6 +76,12 @@ function MovieDetail(props) {
           <h2>Trama</h2>
           <p>{currentFilm ? currentFilm.Plot : "Caricamento..."}</p>
         </Col>
+<Col className='p-5' xs={5}>
+    <div className='bg-white rounded-4'>
+    <h2 className='text-black'>Commenti:</h2>
+<br></br>
+    </div>
+</Col>
       </Row>
     </Container>
   )
