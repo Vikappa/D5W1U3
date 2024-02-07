@@ -30,6 +30,7 @@ function MovieDetail(props) {
           if (response.ok) {
             let film = await response.json()
             setCurrentFilm(film)
+            console.log(film)
           } else {
             console.error("Errore Fetch Movie", response)
           }
@@ -66,11 +67,14 @@ function MovieDetail(props) {
   return (
     <Container>
       <Row>
-        <Col xs={12}>
+        <Col xs={9}>
           <h1>{currentFilm ? currentFilm.Title : "Caricamento..."}</h1>
           <img alt='Locandina film' src={currentFilm ? currentFilm.Poster :'https://http.cat/images/102.jpg' }></img>
-          <h3>{currentFilm ? currentFilm.Year : "Caricamento..."}</h3>
-          <h3>{currentFilm ? currentFilm.Rated : "Caricamento..."}</h3>
+          <h3>Anno: {currentFilm ? currentFilm.Year : "Caricamento..."}</h3>
+          <h3>Voto:{currentFilm ? currentFilm.imdbRating : "Caricamento..."}</h3>
+          <h3>Regia di: {currentFilm ? currentFilm.Director : "Caricamento..."}</h3>
+          <h2>Trama</h2>
+          <p>{currentFilm ? currentFilm.Plot : "Caricamento..."}</p>
         </Col>
       </Row>
     </Container>
