@@ -14,7 +14,7 @@ function extractMovieId(url) {
 
 function MovieDetail(props) {
   const location = useLocation()
-  const [currentFilm, setCurrentFilm] = useState(null) 
+  const [currentFilm, setCurrentFilm] = useState(null)
   const [currentCommentList, setCurrentCommentList] = useState(null)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function MovieDetail(props) {
       try {
         const fetchFilm = async () => {
           const movieId = extractMovieId(location.pathname)
-          if (!movieId) return 
+          if (!movieId) return
           let response = await fetch(`http://www.omdbapi.com/?apikey=1ab1d1e3&i=${movieId}`, {
             headers: {},
           })
@@ -44,7 +44,7 @@ function MovieDetail(props) {
       try {
         const fetchMovieComments = async () => {
           let response = await fetch(
-            `https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`,
+            `https://striveschool-api.herokuapp.com/api/comments/?elementID=${extractMovieId(location.pathname)}`,
             {
               headers: {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhMmY2MDE4N2U1YzAwMTgxNGM1ZjYiLCJpYXQiOjE3MDcxODA5NjUsImV4cCI6MTcwODM5MDU2NX0.m18iQGAjFbus5eW2GN5NBb-m4kxJt6NRqXwEYXveaVU',
@@ -54,6 +54,7 @@ function MovieDetail(props) {
 
           if (response.ok) {
             let comments = await response.json()
+            setCurrentCommentList(comments)
             console.log(comments)
           } else {
           }
@@ -64,6 +65,7 @@ function MovieDetail(props) {
       }
     }
   }, [location.pathname])
+
   return (
     <Container>
       <Row>
@@ -71,20 +73,30 @@ function MovieDetail(props) {
           <h1>{currentFilm ? currentFilm.Title : "Caricamento..."}</h1>
           <img alt='Locandina film' src={currentFilm ? currentFilm.Poster :'https://http.cat/images/102.jpg' }></img>
           <h3>Anno: {currentFilm ? currentFilm.Year : "Caricamento..."}</h3>
-          <h3>Voto:{currentFilm ? currentFilm.imdbRating : "Caricamento..."}</h3>
+          <h3>Voto: {currentFilm ? currentFilm.imdbRating : "Caricamento..."}</h3>
           <h3>Regia di: {currentFilm ? currentFilm.Director : "Caricamento..."}</h3>
           <h2>Trama</h2>
           <p>{currentFilm ? currentFilm.Plot : "Caricamento..."}</p>
         </Col>
-<Col className='p-5' xs={5}>
-    <div className='bg-white rounded-4'>
-    <h2 className='text-black'>Commenti:</h2>
-<br></br>
-    </div>
-</Col>
+        <Col className='p-5' xs={5}>
+          <div className='bg-white rounded-4'>
+            <h2 className='text-black'>Commenti:</h2>
+            <br></br>
+            {currentCommentList && currentCommentList.length > 0 ? (
+              <ul>
+                {currentCommentList.slice(0, 20).map((comment, index) => (
+                  <li key={index}>{comment.comment}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>Caricamento..</p>
+            )}
+          </div>
+        </Col>
       </Row>
     </Container>
   )
 }
 
 export default MovieDetail
+
