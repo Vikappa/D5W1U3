@@ -29,23 +29,20 @@ function MovieDetail(props) {
 
           if (response.ok) {
             let film = await response.json()
-            setCurrentFilm(film) // Aggiorna lo stato con i dettagli del film
+            setCurrentFilm(film)
           } else {
             console.error("Errore Fetch Movie", response)
           }
         }
 
-
-
         fetchFilm()
-
       } catch (error) {
         console.error("Errore Fetch movie (2)", error)
       }
 
-try{
-    const fetchMovieComments = async () => {
-        let response = await fetch(
+      try {
+        const fetchMovieComments = async () => {
+          let response = await fetch(
             `https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`,
             {
               headers: {
@@ -53,31 +50,28 @@ try{
               },
             }
           )
-    
+
           if (response.ok) {
             let comments = await response.json()
-          console.log(comments)
+            console.log(comments)
           } else {
-
+            // Gestisci caso di errore
+          }
         }
+
+        fetchMovieComments()
+      } catch(error) {
+        // Gestisci eccezione
       }
-
-      fetchMovieComments()
-} catch(error)  {
-
-}
-
     }
-
-
-
-  }, [location.pathname]) 
+  }, [location.pathname])
 
   return (
     <Container>
       <Row>
         <Col xs={12}>
           <h1>{currentFilm ? currentFilm.Title : "Caricamento..."}</h1>
+          <img alt='Locandina film' src={currentFilm ? currentFilm.Poster :'https://http.cat/images/102.jpg' }></img>
         </Col>
       </Row>
     </Container>
