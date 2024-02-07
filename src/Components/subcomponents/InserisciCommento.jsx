@@ -33,7 +33,9 @@ function InserisciCommento(props) {
         })
 
         if (response.ok) {
-          alert('Recensione inviata!')
+          let propsCopia = [...props.currentCommentList]
+          propsCopia.push(bodyCommento(commento))
+          props.setCurrentCommentList(propsCopia)
         } else {
           throw new Error('Qualcosa è andato storto')
         }

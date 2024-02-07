@@ -62,7 +62,7 @@ function MovieDetail(props) {
       } catch(error) {
       }
     }
-  }, [location.pathname])
+  }, [location.pathname, currentCommentList])
 
   return (
     <Container>
@@ -82,10 +82,10 @@ function MovieDetail(props) {
             <br></br>
             {currentCommentList && currentCommentList.length > 0 ? (
               <ul>
-                {currentCommentList.slice(0, 20).map((comment, index) => (
-                  <li key={index}>{comment.comment}</li>
+                {currentCommentList.slice(currentCommentList.length-20, currentCommentList.length).map((comment, index) => (
+                  <div className='d-flex flex-wrap' key={index}><span className='text-primary'>{comment.author}</span><div className='d-flex align-items-center justify-content-between'><p className='text-black'>{comment.comment}</p><p className='text-black'>Voto: {comment.rate}</p> </div></div>
                 ))}
-              <InserisciCommento elementID={extractMovieId(location.pathname)}/>
+              <InserisciCommento elementID={extractMovieId(location.pathname)} currentCommentList={currentCommentList} setCurrentCommentList={setCurrentCommentList}/>
               </ul>
             ) : (
               <p>Caricamento..</p>
