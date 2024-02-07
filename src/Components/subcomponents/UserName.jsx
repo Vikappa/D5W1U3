@@ -12,7 +12,6 @@ function UserName(props) {
     e.preventDefault()
     props.setShowModal(true)
   }
-console.log(props)
 
   return (
     <div className="mt-2 d-flex justify-content-center align-items-center custom-split-button">

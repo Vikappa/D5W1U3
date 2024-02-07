@@ -5,6 +5,7 @@ class Body extends Component {
   render() {
     return (
          <div>
+          <h1 className='mx-4'>FILMS PER TE</h1>
         <h2>Consigliati per te:</h2>
         <Filmbar currentUser={this.props.currentuserName} queryParam={"Harry Potter"}/>
         <h2>Suggerimenti:</h2>

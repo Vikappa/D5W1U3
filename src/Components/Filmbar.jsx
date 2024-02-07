@@ -11,14 +11,11 @@ class Filmbar extends Component {
         scrollLeft: 0,
     }
 
-  
-
     riformattaInput(input) {
         return input.replace(/\s/g, "+")
     }
 
     fetchFilmFromQueryParam = async (param) => {
-      
         fetch(`http://www.omdbapi.com/?apikey=1ab1d1e3&s=${param}&page=2&type=movie`)
         .then(response => {
           if (!response.ok) { 
@@ -64,7 +61,7 @@ this.state.filmArray.map((film, index) => {
 })
         }
       </div>
-    );
+    )
   }
 }
 
