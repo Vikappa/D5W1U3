@@ -34,11 +34,9 @@ function InserisciCommento(props) {
 
         if (response.ok) {
           let propsCopia = [...props.currentCommentList]
-          propsCopia.push(bodyCommento(commento))
-          props.setCurrentCommentList(propsCopia)
-
           setCommento('')
           setRate(1)
+          props.updateComments()
         } else {
           throw new Error('Qualcosa è andato storto')
         }

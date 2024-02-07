@@ -42,7 +42,7 @@ function MovieDetail(props) {
 
       try {
         const fetchMovieComments = async () => {
-console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`)
+        console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`)
           let response = await fetch(
             `https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`,
             {
@@ -64,6 +64,31 @@ console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieI
       }
     }
   }, [location.pathname])
+
+  const updateComments = async () => {
+    try {
+      const fetchMovieComments = async () => {
+      console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`)
+        let response = await fetch(
+          `https://striveschool-api.herokuapp.com/api/comments/${extractMovieId(location.pathname)}`,
+          {
+            headers: {
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhMmY2MDE4N2U1YzAwMTgxNGM1ZjYiLCJpYXQiOjE3MDcxODA5NjUsImV4cCI6MTcwODM5MDU2NX0.m18iQGAjFbus5eW2GN5NBb-m4kxJt6NRqXwEYXveaVU',
+            },
+          }
+        )
+  
+        if (response.ok) {
+          let comments = await response.json()
+          setCurrentCommentList(comments)
+        } else {
+        }
+      }
+  
+      fetchMovieComments()
+    } catch(error) {
+    }
+  }
 
   return (
     <Container>
@@ -90,7 +115,7 @@ console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieI
             ) : (
               <p>Caricamento..</p>
               )}
-              <InserisciCommento elementID={extractMovieId(location.pathname)} currentCommentList={currentCommentList} setCurrentCommentList={setCurrentCommentList}/>
+              <InserisciCommento elementID={extractMovieId(location.pathname)} currentCommentList={currentCommentList} updateComments={updateComments}/>
           </div>
         </Col>
       </Row>
