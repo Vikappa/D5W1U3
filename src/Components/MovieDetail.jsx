@@ -86,11 +86,11 @@ console.log(`https://striveschool-api.herokuapp.com/api/comments/${extractMovieI
                 {currentCommentList.slice(currentCommentList.length-20, currentCommentList.length).map((comment, index) => (
                   <div className='d-flex flex-wrap' key={index}><span className='text-primary'>{comment.author}</span><div className='d-flex align-items-center justify-content-between'><p className='text-black'>{comment.comment}</p><p className='text-black'>Voto: {comment.rate}</p> </div></div>
                 ))}
-              <InserisciCommento elementID={extractMovieId(location.pathname)} currentCommentList={currentCommentList} setCurrentCommentList={setCurrentCommentList}/>
               </ul>
             ) : (
               <p>Caricamento..</p>
-            )}
+              )}
+              <InserisciCommento elementID={extractMovieId(location.pathname)} currentCommentList={currentCommentList} setCurrentCommentList={setCurrentCommentList}/>
           </div>
         </Col>
       </Row>
