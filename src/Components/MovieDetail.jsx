@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-
+import  InserisciCommento from './subcomponents/InserisciCommento'
 function extractMovieId(url) {
   const parts = url.split("/movie-details/")
   if (parts.length > 1) {
@@ -78,7 +78,7 @@ function MovieDetail(props) {
           <h2>Trama</h2>
           <p>{currentFilm ? currentFilm.Plot : "Caricamento..."}</p>
         </Col>
-        <Col className='p-5' xs={5}>
+        <Col className='py-5 ps-5' xs={5}>
           <div className='bg-white rounded-4'>
             <h2 className='text-black'>Commenti:</h2>
             <br></br>
@@ -87,6 +87,7 @@ function MovieDetail(props) {
                 {currentCommentList.slice(0, 20).map((comment, index) => (
                   <li key={index}>{comment.comment}</li>
                 ))}
+              <InserisciCommento />
               </ul>
             ) : (
               <p>Caricamento..</p>
