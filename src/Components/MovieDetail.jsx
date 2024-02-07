@@ -55,23 +55,22 @@ function MovieDetail(props) {
             let comments = await response.json()
             console.log(comments)
           } else {
-            // Gestisci caso di errore
           }
         }
 
         fetchMovieComments()
       } catch(error) {
-        // Gestisci eccezione
       }
     }
   }, [location.pathname])
-
   return (
     <Container>
       <Row>
         <Col xs={12}>
           <h1>{currentFilm ? currentFilm.Title : "Caricamento..."}</h1>
           <img alt='Locandina film' src={currentFilm ? currentFilm.Poster :'https://http.cat/images/102.jpg' }></img>
+          <h3>{currentFilm ? currentFilm.Year : "Caricamento..."}</h3>
+          <h3>{currentFilm ? currentFilm.Rated : "Caricamento..."}</h3>
         </Col>
       </Row>
     </Container>
