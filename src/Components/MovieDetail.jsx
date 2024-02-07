@@ -30,7 +30,6 @@ function MovieDetail(props) {
           if (response.ok) {
             let film = await response.json()
             setCurrentFilm(film)
-            console.log(film)
           } else {
             console.error("Errore Fetch Movie", response)
           }
@@ -55,7 +54,6 @@ function MovieDetail(props) {
           if (response.ok) {
             let comments = await response.json()
             setCurrentCommentList(comments)
-            console.log(comments)
           } else {
           }
         }
@@ -87,7 +85,7 @@ function MovieDetail(props) {
                 {currentCommentList.slice(0, 20).map((comment, index) => (
                   <li key={index}>{comment.comment}</li>
                 ))}
-              <InserisciCommento />
+              <InserisciCommento elementID={extractMovieId(location.pathname)}/>
               </ul>
             ) : (
               <p>Caricamento..</p>
